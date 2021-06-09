@@ -1,0 +1,47 @@
+version: '3.7'
+
+services:
+  # Service
+  ws-components:
+    container_name: vehicle-ws-components
+    networks:
+      - vehicle-net
+    build:
+      context: ./ws-service
+      dockerfile: Dockerfile
+      network: host
+    image: ws-components
+    environment:
+      WEBSOCKET_ADDR: ${WEBSOCKET_ADDR}
+      DATABASE_ADDR: ${DATABASE_ADDR}
+    hostname: ws-components
+    restart: on-failure
+
+  # Dependencies
+  mongo-db:
+    container_name: vehicle-mongo-db
+    image: mongo
+    hostname: mongo-db
+    networks:
+      - vehicle-net
+    ports:
+      - 27017
+
+  vehicle-emulator:
+    container_name: vehicle-emulator
+    build:
+      context: ./vehicleEmulator
+      dockerfile: Dockerfile
+    image: vehicle-emulator
+    hostname: vehicle-emulator
+    ports:
+      - 8080
+    networks:
+      - vehicle-net
+
+networks:
+  vehicle-net:
+    ipam:
+      driver: default
+      config:
+        - subnet: ${VEHICLE_SUBNET}

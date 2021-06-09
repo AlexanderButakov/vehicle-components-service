@@ -1,0 +1,14 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[packages]
+aiohttp = "==3.7.4.post0"
+attrs = "==21.2.0"
+motor = "==2.4.0"
+pymongo = "==3.11.4"
+typing-extensions = "==3.10.0.0"
+
+[requires]
+python_version = "3.7"

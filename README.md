@@ -55,4 +55,4 @@ Data will be returned in pages.
     - MongoDB  
     - `ws-service` which listens to websocket and return data via API.  
 
- 
+3. Visit the `subnet_ip:8080/data?page_num=1&page_size=10`, where `subnet_ip` is an ip from the `VEHICLE_SUBNET` range, to request first 10 results.
